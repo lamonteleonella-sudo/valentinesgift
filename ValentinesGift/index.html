@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Gift 💚</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Quicksand:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    .font-display {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    
+    .font-body {
+      font-family: 'Quicksand', 'Segoe UI', sans-serif;
+    }
+    
+    .page {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    
+    .page.active {
+      display: flex;
+      opacity: 1;
+    }
+    
+    .gift-card {
+      transition: all 0.3s ease;
+    }
+    
+    .gift-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(76, 111, 87, 0.2);
+    }
+    
+    .btn-primary {
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(76, 111, 87, 0.35);
+    }
+    
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .letter-paper {
+      background: linear-gradient(135deg, #fefefe 0%, #f8faf8 100%);
+      box-shadow: 0 4px 30px rgba(76, 111, 87, 0.15);
+    }
+    
+    .lily-accent {
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    /* Photo Grid Styles - Updated for Centering */
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(76, 111, 87, 0.12);
+      transition: all 0.3s ease;
+      /* Fixed sizes for flexbox centering */
+      width: 150px;
+      height: 150px;
+    }
+
+    /* Responsive sizes for photos */
+    @media (min-width: 768px) {
+      .photo-card { width: 200px; height: 200px; }
+    }
+    
+    .photo-card:hover {
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 15px 30px rgba(76, 111, 87, 0.25);
+      z-index: 10;
+    }
+    
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Vinyl Animation Styles */
+    .vinyl-record {
+      animation: spin 8s linear infinite;
+    }
+    
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .music-card {
+      background: linear-gradient(145deg, #ffffff, #f0fdf4);
+      border: 1px solid #dcfce7;
+    }
+
+    .hearts {
+      position: absolute;
+      pointer-events: none;
+    }
+    
+    .heart {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: floatUp 4s ease-out infinite;
+      opacity: 0;
+    }
+    
+    @keyframes floatUp {
+      0% { opacity: 0; transform: translateY(100px) scale(0.5); }
+      10% { opacity: 0.8; }
+      100% { opacity: 0; transform: translateY(-100px) scale(1); }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body">
+  <div id="app" class="app-wrapper w-full h-full overflow-auto">
+   
+   <div id="page-opening" class="page active flex-col items-center justify-center min-h-full w-full p-6" style="background: linear-gradient(180deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);">
+    <div class="hearts">
+     <span class="heart" style="left: 10%; animation-delay: 0s;">💚</span> <span class="heart" style="left: 25%; animation-delay: 0.5s;">🌿</span> <span class="heart" style="left: 40%; animation-delay: 1s;">💚</span> <span class="heart" style="left: 55%; animation-delay: 1.5s;">🍃</span> <span class="heart" style="left: 70%; animation-delay: 2s;">💚</span> <span class="heart" style="left: 85%; animation-delay: 2.5s;">🌱</span>
+    </div>
+    <div class="text-center fade-in max-w-md mx-auto">
+     <div class="floating mb-8">
+      <svg width="180" height="180" viewbox="0 0 180 180" class="mx-auto drop-shadow-lg">
+       <ellipse cx="90" cy="120" rx="55" ry="45" fill="#f5f5dc" /> <circle cx="90" cy="70" r="45" fill="#f5f5dc" /> <path d="M55 35 L45 5 L75 30 Z" fill="#f5f5dc" /> <path d="M58 32 L52 12 L70 30 Z" fill="#ffb6c1" /> <path d="M125 35 L135 5 L105 30 Z" fill="#f5f5dc" /> <path d="M122 32 L128 12 L110 30 Z" fill="#ffb6c1" /> <ellipse cx="72" cy="65" rx="10" ry="12" fill="#2e7d32" /> <ellipse cx="108" cy="65" rx="10" ry="12" fill="#2e7d32" /> <circle cx="74" cy="62" r="4" fill="white" /> <circle cx="110" cy="62" r="4" fill="white" /> <path d="M90 78 L85 85 L95 85 Z" fill="#ffb6c1" /> <path d="M90 85 Q85 92 80 88" stroke="#666" stroke-width="2" fill="none" /> <path d="M90 85 Q95 92 100 88" stroke="#666" stroke-width="2" fill="none" /> <line x1="50" y1="75" x2="70" y2="78" stroke="#666" stroke-width="1.5" /> <line x1="50" y1="82" x2="70" y2="82" stroke="#666" stroke-width="1.5" /> <line x1="50" y1="89" x2="70" y2="86" stroke="#666" stroke-width="1.5" /> <line x1="130" y1="75" x2="110" y2="78" stroke="#666" stroke-width="1.5" /> <line x1="130" y1="82" x2="110" y2="82" stroke="#666" stroke-width="1.5" /> <line x1="130" y1="89" x2="110" y2="86" stroke="#666" stroke-width="1.5" /> <ellipse cx="60" cy="82" rx="8" ry="5" fill="#ffcdd2" opacity="0.6" /> <ellipse cx="120" cy="82" rx="8" ry="5" fill="#ffcdd2" opacity="0.6" /> <ellipse cx="70" cy="145" rx="12" ry="8" fill="#f5f5dc" /> <ellipse cx="110" cy="145" rx="12" ry="8" fill="#f5f5dc" /> <path d="M90 130 C90 130 70 115 70 128 C70 138 90 155 90 155 C90 155 110 138 110 128 C110 115 90 130 90 130" fill="#e91e63" />
+      </svg>
+     </div>
+     <h1 id="opening-greeting" class="font-display text-3xl md:text-4xl text-[#2e7d32] mb-4 leading-relaxed">Hi love 💚<br>
+       I made something special just for you…</h1>
+     <p class="text-[#4a7c59] text-lg mb-8 opacity-90">A little Valentine's surprise awaits ✨</p><button onclick="navigateTo('page-presents')" class="btn-primary px-8 py-4 rounded-full text-white text-lg font-semibold shadow-lg" style="background: linear-gradient(135deg, #4c6f57 0%, #2e7d32 100%);"> Open My Valentine's Gift 💝 </button>
+    </div>
+   </div>
+   
+   <div id="page-presents" class="page flex-col items-center justify-center min-h-full w-full p-6 py-12" style="background: linear-gradient(180deg, #e8f5e9 0%, #dcedc8 100%);">
+    <div class="text-center mb-10 fade-in">
+     <h1 id="main-title" class="font-display text-3xl md:text-4xl text-[#2e7d32] mb-3">Three Little Gifts, Made Just for You 💚</h1>
+     <p class="text-[#4a7c59] text-lg">Click each present to unwrap your surprise</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl w-full px-4">
+     <div onclick="navigateTo('page-music')" class="gift-card cursor-pointer rounded-3xl p-8 text-center" style="background: linear-gradient(145deg, #ffffff 0%, #f1f8e9 100%); box-shadow: 0 10px 30px rgba(76, 111, 87, 0.15);">
+      <div class="text-6xl mb-4">
+       🎵🌸
+      </div>
+      <h3 class="font-display text-xl text-[#2e7d32] mb-2">Music &amp; Flowers</h3>
+      <p class="text-[#5d8a66] text-sm">A song that reminds me of you</p>
+      <div class="mt-4 inline-block px-4 py-2 rounded-full text-xs font-medium" style="background: #c8e6c9; color: #2e7d32;">
+       Click to Open 🎁
+      </div>
+     </div>
+     <div onclick="navigateTo('page-letter')" class="gift-card cursor-pointer rounded-3xl p-8 text-center" style="background: linear-gradient(145deg, #ffffff 0%, #f1f8e9 100%); box-shadow: 0 10px 30px rgba(76, 111, 87, 0.15);">
+      <div class="text-6xl mb-4">
+       💌
+      </div>
+      <h3 class="font-display text-xl text-[#2e7d32] mb-2">A Love Letter</h3>
+      <p class="text-[#5d8a66] text-sm">Words from my heart to yours</p>
+      <div class="mt-4 inline-block px-4 py-2 rounded-full text-xs font-medium" style="background: #c8e6c9; color: #2e7d32;">
+       Click to Open 🎁
+      </div>
+     </div>
+     <div onclick="navigateTo('page-gallery')" class="gift-card cursor-pointer rounded-3xl p-8 text-center" style="background: linear-gradient(145deg, #ffffff 0%, #f1f8e9 100%); box-shadow: 0 10px 30px rgba(76, 111, 87, 0.15);">
+      <div class="text-6xl mb-4">
+       📸
+      </div>
+      <h3 class="font-display text-xl text-[#2e7d32] mb-2">Photo Gallery</h3>
+      <p class="text-[#5d8a66] text-sm">My favorite memories of you</p>
+      <div class="mt-4 inline-block px-4 py-2 rounded-full text-xs font-medium" style="background: #c8e6c9; color: #2e7d32;">
+       Click to Open 🎁
+      </div>
+     </div>
+    </div>
+   </div>
+   
+   <div id="page-music" class="page flex-col items-center justify-start min-h-full w-full p-6 py-10" style="background: linear-gradient(180deg, #e8f5e9 0%, #c8e6c9 100%);">
+    <h1 class="font-display text-3xl text-[#2e7d32] mb-8 text-center">🎵 Music &amp; Flowers 🌸</h1>
+    <div class="flex flex-col lg:flex-row items-center justify-center gap-8 max-w-5xl w-full">
+     <div class="w-full lg:w-1/2 rounded-2xl p-8 music-card shadow-xl flex flex-col items-center justify-center text-center relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-full bg-green-200 opacity-20 z-0"></div>
+      <div class="relative z-10 w-48 h-48 mb-6 rounded-full bg-black border-4 border-white shadow-2xl flex items-center justify-center vinyl-record">
+       <div class="w-16 h-16 rounded-full bg-green-600 border-4 border-gray-800 flex items-center justify-center">
+        <span class="text-2xl">🎵</span>
+       </div>
+       <div class="absolute w-40 h-40 rounded-full border border-gray-800 opacity-50 pointer-events-none"></div>
+       <div class="absolute w-32 h-32 rounded-full border border-gray-800 opacity-50 pointer-events-none"></div>
+       <div class="absolute w-24 h-24 rounded-full border border-gray-800 opacity-50 pointer-events-none"></div>
+      </div>
+      <div class="relative z-10 mb-6">
+       <h2 class="font-display text-2xl text-[#1b5e20] mb-1">Di Nakakasawa</h2>
+       <p class="text-[#4a7c59] font-medium">Arthur Nery</p>
+      </div>
+      <a href="https://youtu.be/qz4d57-ypK0?si=VXi4O309jpDRNsiw" target="_blank" class="relative z-10 btn-primary flex items-center gap-3 px-8 py-4 rounded-full text-white text-lg font-semibold shadow-lg hover:no-underline" style="background: linear-gradient(135deg, #1db954 0%, #191414 100%);"> <span>▶️</span> Play Song on YouTube </a>
+      <p class="relative z-10 text-xs text-gray-500 mt-4">Click to listen in a new tab 🎧</p>
+     </div>
+     <div class="w-full lg:w-1/2 flex justify-center">
+      <svg width="280" height="350" viewbox="0 0 280 350" class="lily-accent">
+       <path d="M100 350 L90 250 C90 240 100 230 140 230 C180 230 190 240 190 250 L180 350 Z" fill="url(#vaseGradient)" stroke="#4c6f57" stroke-width="2" /> <ellipse cx="140" cy="230" rx="50" ry="12" fill="#5d8a66" /> <path d="M140 230 Q130 180 120 120" stroke="#4a7c59" stroke-width="4" fill="none" /> <path d="M140 230 Q150 170 170 100" stroke="#4a7c59" stroke-width="4" fill="none" /> <path d="M140 230 Q135 160 110 90" stroke="#4a7c59" stroke-width="4" fill="none" /> <path d="M125 200 Q100 190 90 210 Q110 200 125 200" fill="#66bb6a" /> <path d="M155 190 Q180 180 190 200 Q170 190 155 190" fill="#66bb6a" />
+       <g transform="translate(105, 70) rotate(-20)">
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ffb6c1" transform="rotate(-30)" />
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ff69b4" transform="rotate(30)" />
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ffb6c1" transform="rotate(90)" />
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ff69b4" transform="rotate(-90)" />
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ffb6c1" transform="rotate(150)" />
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ff69b4" transform="rotate(-150)" />
+        <circle cx="0" cy="0" r="8" fill="#ffeb3b" />
+        <circle cx="-5" cy="-15" r="2" fill="#c2185b" opacity="0.7" />
+        <circle cx="5" cy="-18" r="1.5" fill="#c2185b" opacity="0.7" />
+        <circle cx="0" cy="-22" r="2" fill="#c2185b" opacity="0.7" />
+       </g>
+       <g transform="translate(175, 55) rotate(15)">
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ff69b4" transform="rotate(-30)" />
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ffb6c1" transform="rotate(30)" />
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ff69b4" transform="rotate(90)" />
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ffb6c1" transform="rotate(-90)" />
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ff69b4" transform="rotate(150)" />
+        <ellipse cx="0" cy="-25" rx="12" ry="30" fill="#ffb6c1" transform="rotate(-150)" />
+        <circle cx="0" cy="0" r="8" fill="#ffeb3b" />
+        <circle cx="-6" cy="-12" r="2" fill="#c2185b" opacity="0.7" />
+        <circle cx="4" cy="-20" r="1.5" fill="#c2185b" opacity="0.7" />
+       </g>
+       <g transform="translate(100, 40) rotate(-35)">
+        <ellipse cx="0" cy="-22" rx="10" ry="26" fill="#ffb6c1" transform="rotate(-30)" />
+        <ellipse cx="0" cy="-22" rx="10" ry="26" fill="#ff69b4" transform="rotate(30)" />
+        <ellipse cx="0" cy="-22" rx="10" ry="26" fill="#ffb6c1" transform="rotate(90)" />
+        <ellipse cx="0" cy="-22" rx="10" ry="26" fill="#ff69b4" transform="rotate(-90)" />
+        <ellipse cx="0" cy="-22" rx="10" ry="26" fill="#ffb6c1" transform="rotate(150)" />
+        <ellipse cx="0" cy="-22" rx="10" ry="26" fill="#ff69b4" transform="rotate(-150)" />
+        <circle cx="0" cy="0" r="7" fill="#ffeb3b" />
+        <circle cx="3" cy="-14" r="1.5" fill="#c2185b" opacity="0.7" />
+       </g>
+       <defs>
+        <lineargradient id="vaseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+         <stop offset="0%" style="stop-color:#81c784" />
+         <stop offset="100%" style="stop-color:#4c6f57" />
+        </lineargradient>
+       </defs>
+      </svg>
+     </div>
+    </div>
+    <div class="max-w-2xl mx-auto mt-8 p-6 rounded-2xl text-center" style="background: rgba(255,255,255,0.8); box-shadow: 0 8px 25px rgba(76, 111, 87, 0.1);">
+     <p class="text-[#2e7d32] font-display text-lg leading-relaxed italic">"I chose this song because it reminds me of the first time I saw you on TikTok with this song playing. I still remember that moment so clearly — you were absolutely gorgeous, effortlessly captivating, and completely unforgettable. Just like the song says, you're never nakakasawa. Every time I see you, it feels just as special as the first time."</p>
+     <p class="text-[#5d8a66] mt-4">— with all my love 💚</p>
+    </div><button onclick="navigateTo('page-presents')" class="btn-primary mt-8 px-6 py-3 rounded-full text-white font-medium shadow-lg" style="background: linear-gradient(135deg, #4c6f57 0%, #2e7d32 100%);"> ← Back to My Presents </button>
+   </div>
+   
+   <div id="page-letter" class="page flex-col items-center justify-start min-h-full w-full p-6 py-10" style="background: linear-gradient(180deg, #f1f8e9 0%, #dcedc8 100%);">
+    <h1 class="font-display text-3xl text-[#2e7d32] mb-6 text-center">💌 A Love Letter For You</h1>
+    <div class="relative max-w-2xl w-full">
+     <div class="absolute -top-4 -left-4 opacity-30">
+      <svg width="80" height="80" viewbox="0 0 80 80">
+       <g transform="translate(40, 40)">
+        <ellipse cx="0" cy="-15" rx="8" ry="20" fill="#ff69b4" transform="rotate(-45)" />
+        <ellipse cx="0" cy="-15" rx="8" ry="20" fill="#ffb6c1" transform="rotate(45)" />
+        <ellipse cx="0" cy="-15" rx="8" ry="20" fill="#ff69b4" transform="rotate(135)" />
+        <ellipse cx="0" cy="-15" rx="8" ry="20" fill="#ffb6c1" transform="rotate(-135)" />
+        <circle cx="0" cy="0" r="5" fill="#ffeb3b" />
+       </g>
+      </svg>
+     </div>
+     <div class="absolute -bottom-4 -right-4 opacity-30">
+      <svg width="80" height="80" viewbox="0 0 80 80">
+       <g transform="translate(40, 40)">
+        <ellipse cx="0" cy="-15" rx="8" ry="20" fill="#ffb6c1" transform="rotate(-45)" />
+        <ellipse cx="0" cy="-15" rx="8" ry="20" fill="#ff69b4" transform="rotate(45)" />
+        <ellipse cx="0" cy="-15" rx="8" ry="20" fill="#ffb6c1" transform="rotate(135)" />
+        <ellipse cx="0" cy="-15" rx="8" ry="20" fill="#ff69b4" transform="rotate(-135)" />
+        <circle cx="0" cy="0" r="5" fill="#ffeb3b" />
+       </g>
+      </svg>
+     </div>
+     <div class="letter-paper rounded-2xl p-8 md:p-12" style="border: 2px solid #c8e6c9;">
+      <div class="text-[#2e7d32] font-body leading-loose text-base md:text-lg">
+       <p class="font-display text-2xl mb-6 text-[#1b5e20]">My Mabii,</p>
+       <p class="mb-4">Happy Valentine's Day, hon.</p>
+       <p class="mb-4">Sometimes I still can't believe that I get to call you mine. Out of all the people in this world, I'm lucky enough to love you and be loved by you — and that alone already feels like a miracle.</p>
+       <p class="mb-4">Every day with you reminds me how precious love can be when it's real, gentle, and sincere. You inspire me to be better, to try harder, and to love deeper. I may not be perfect, but I promise to always do my best to give you the kind of love you truly deserve — the kind that's patient, loyal, and full of warmth.</p>
+       <p class="mb-4">I chose the stargazer lily because it symbolizes admiration, devotion, and pure love — and that's exactly how I see you. You are someone I admire deeply, someone I'm devoted to, and someone I choose every single day.</p>
+       <p class="mb-4">Thank you for being you. Thank you for loving me. Thank you for making my world softer, brighter, and more meaningful.</p>
+       <p class="mb-6">I love you more than words can ever fully say.</p>
+       <p class="font-display text-xl text-right">Always yours,<br><span id="signature-name" class="text-2xl text-[#1b5e20]">Haji</span></p>
+      </div>
+      <div class="text-center mt-6">
+       <span class="text-4xl">💚</span>
+      </div>
+     </div>
+    </div><button onclick="navigateTo('page-presents')" class="btn-primary mt-8 px-6 py-3 rounded-full text-white font-medium shadow-lg" style="background: linear-gradient(135deg, #4c6f57 0%, #2e7d32 100%);"> ← Back to My Presents </button>
+   </div>
+   
+   <div id="page-gallery" class="page flex-col items-center justify-start min-h-full w-full p-6 py-10" style="background: linear-gradient(180deg, #e8f5e9 0%, #c8e6c9 100%);">
+    <h1 class="font-display text-3xl text-[#2e7d32] mb-8 text-center">📸 My Favorite Person</h1>
+    <div class="max-w-5xl w-full">
+     <div class="mb-8 rounded-2xl p-8 text-center" style="background: linear-gradient(135deg, #ffffff 0%, #f1f8e9 100%); box-shadow: 0 10px 30px rgba(76, 111, 87, 0.15);">
+      <svg width="80" height="80" viewbox="0 0 120 120" class="mx-auto mb-4">
+       <circle cx="60" cy="60" r="45" fill="#f5f5dc" /> <path d="M25 30 L20 5 L45 25 Z" fill="#f5f5dc" /> <path d="M28 28 L25 12 L42 25 Z" fill="#ffb6c1" /> <path d="M95 30 L100 5 L75 25 Z" fill="#f5f5dc" /> <path d="M92 28 L95 12 L78 25 Z" fill="#ffb6c1" /> <ellipse cx="45" cy="55" rx="8" ry="10" fill="#2e7d32" /> <ellipse cx="75" cy="55" rx="8" ry="10" fill="#2e7d32" /> <circle cx="47" cy="52" r="3" fill="white" /> <circle cx="77" cy="52" r="3" fill="white" /> <path d="M60 65 L55 72 L65 72 Z" fill="#ffb6c1" /> <path d="M60 72 Q55 78 50 75" stroke="#666" stroke-width="2" fill="none" /> <path d="M60 72 Q65 78 70 75" stroke="#666" stroke-width="2" fill="none" /> <ellipse cx="35" cy="68" rx="6" ry="4" fill="#ffcdd2" opacity="0.6" /> <ellipse cx="85" cy="68" rx="6" ry="4" fill="#ffcdd2" opacity="0.6" />
+      </svg>
+      <p class="font-display text-xl text-[#2e7d32]">You, in every moment 💚</p>
+     </div>
+
+     <div class="flex flex-wrap justify-center gap-4 pb-8">
+      
+      <div class="photo-card">
+        <img src="photos/photo1.jpg" alt="Memory 1" loading="lazy">
+      </div>
+      
+      <div class="photo-card">
+        <img src="photos/photo2.jpg" alt="Memory 2" loading="lazy">
+      </div>
+      
+      <div class="photo-card">
+        <img src="photos/photo3.jpg" alt="Memory 3" loading="lazy">
+      </div>
+      
+      <div class="photo-card">
+        <img src="photos/photo4.jpg" alt="Memory 4" loading="lazy">
+      </div>
+      
+      <div class="photo-card">
+        <img src="photos/photo5.jpg" alt="Memory 5" loading="lazy">
+      </div>
+      
+      <div class="photo-card">
+        <img src="photos/photo6.jpg" alt="Memory 6" loading="lazy">
+      </div>
+      
+      <div class="photo-card">
+        <img src="photos/photo7.jpg" alt="Memory 7" loading="lazy">
+      </div>
+      
+      <div class="photo-card">
+        <img src="photos/photo8.jpg" alt="Memory 8" loading="lazy">
+      </div>
+
+     </div>
+    </div><button onclick="navigateTo('page-presents')" class="btn-primary mt-4 px-6 py-3 rounded-full text-white font-medium shadow-lg" style="background: linear-gradient(135deg, #4c6f57 0%, #2e7d32 100%);"> ← Back to My Presents </button>
+   </div>
+  </div>
+  
+  <script>
+    // Configuration and Navigation Logic
+    const defaultConfig = {
+      opening_greeting: "Hi love 💚\nI made something special just for you…",
+      main_title: "Three Little Gifts, Made Just for You 💚",
+      signature_name: "Haji",
+      background_color: "#e8f5e9"
+    };
+
+    function navigateTo(pageId) {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      const targetPage = document.getElementById(pageId);
+      if (targetPage) {
+        setTimeout(() => {
+          targetPage.classList.add('active');
+          window.scrollTo(0, 0);
+        }, 100);
+      }
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: (config) => {
+          document.getElementById('opening-greeting').innerHTML = (config.opening_greeting || defaultConfig.opening_greeting).replace(/\n/g, '<br>');
+          document.getElementById('main-title').textContent = config.main_title || defaultConfig.main_title;
+          document.getElementById('signature-name').textContent = config.signature_name || defaultConfig.signature_name;
+        }
+      });
+    }
+  </script>
+ </body>
+</html>
